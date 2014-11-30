@@ -1,0 +1,14 @@
+{
+    "name": "猎狗",
+    "version": "0.0.2",
+    "description": "find you favourite web",
+    "manifest_version": 2, 
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_title": "favourite",
+        "default_popup": "popup.html"
+    },
+    "permissions" : [
+        "history"
+    ]
+}
