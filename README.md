@@ -29,3 +29,6 @@
 引用：
 <a href="http://chrome.liuyixi.com/overview.html">chrome插件开发.官方简版</a> 
 <a href="http://blog.csdn.net/xiaoxian8023/article/details/24457767">崔成龙.chrom插件开发</a>
+<a href="http://open.chrome.360.cn/html/dev_history.html">360.chromeapi文档</a>
+<a href="http://chrome.liuyixi.com/history.html#type-HistoryItem">chrome api 文档</a>
+<a href="http://v3.bootcss.com/css/#code">bootstarp官方用例说明</a>

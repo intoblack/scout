@@ -41,7 +41,6 @@ function onAnchorClick(event) {
       function(HistoryItem ) {
         for (var i = 0; i < HistoryItem .length; ++i) {
           var url = HistoryItem[i].url;
-          alert(url);
           var processVisitsWithUrl = function(url) {
             return function(visitItems) {
               processVisits(url, visitItems);
