@@ -29,34 +29,27 @@ function buildPopupDom(divName, data) {
   popupDiv.appendChild(table);
 }
 
-var urlToCount = {};
 
 function buildTypedUrlList(divName) {
 
   var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 1;
   var beforeTime = (new Date).getTime() - microsecondsPerWeek;
-
   var numRequestsOutstanding = 0;
-
   chrome.history.search({
       'text': '',
-      'startTime': beforeTime
+      'startTime': beforeTime ,
     },
-    function(HistoryItem) {
-      for (var i = 0; i < HistoryItem.length; ++i) {
-        var url = HistoryItem[i].url;
+    walkHistory
+  );
+}
 
-      });
+function walkHistory(array of HistoryItem results) {
+  for (var i = 0; i < HistoryItem.length; ++i) {
+    var url = HistoryItem[i].url;
+
   }
 }
 
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
-
-  buildTypedUrlList("container-fluid");
+  buildTypedUrlList("show");
 });
