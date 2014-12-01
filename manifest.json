@@ -9,6 +9,7 @@
         "default_popup": "popup.html"
     },
     "permissions" : [
-        "history"
+        "history",
+        "http://*.bootcss.com/"
     ]
 }
