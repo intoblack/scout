@@ -25,6 +25,9 @@
 
 
 
+调试chrome 插件
+-------------------
++  地址 chrome-extension://你控件的id/popup.html   
 
 引用：
 <a href="http://chrome.liuyixi.com/overview.html">chrome插件开发.官方简版</a> 
