@@ -30,25 +30,27 @@ function buildPopupDom(divName, data) {
 }
 
 
+
 function buildTypedUrlList(divName) {
 
   var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 1;
   var beforeTime = (new Date).getTime() - microsecondsPerWeek;
   var numRequestsOutstanding = 0;
+
   chrome.history.search({
       'text': '',
-      'startTime': beforeTime ,
+      'startTime': beforeTime,
     },
-    walkHistory
+    function(HistoryItem) {
+      for (var i = 0; i < HistoryItem.length; ++i) {
+        var url = HistoryItem[i].url;
+        alert(url);
+      }
+    }
   );
 }
 
-function walkHistory(array of HistoryItem results) {
-  for (var i = 0; i < HistoryItem.length; ++i) {
-    var url = HistoryItem[i].url;
 
-  }
-}
 
 document.addEventListener('DOMContentLoaded', function() {
   buildTypedUrlList("show");
