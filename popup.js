@@ -32,24 +32,22 @@ function buildPopupDom(divName, data) {
 
 function buildPopupDom1(divName, data , urlcounts ) {
   var popupDiv = document.getElementById(divName);
-  var table = document.createElement('table');
-  table.className = "table table-hover";
+  var tbody = document.createElement('tbody')
+  var table = document.createElement("table");
+  table.className = "table table-hover" ;
+  table.appendChild(tbody) ;
   for (var site in data ) {
     var tr = document.createElement('tr');
-    tr.className = "info";
-    var td = document.createElement('td')
-    td.className = "active";
-    td.appendChild(document.createTextNode(site));
-    tr.appendChild(td);
-    var td1 = document.createElement('td');
-    td1.className = "warn";
-    td1.appendChild(document.createTextNode(data[site]));
-    tr.appendChild(td1);
+    var siteName = document.createElement('td')
+    siteName.appendChild(document.createTextNode(site));
+    tr.appendChild(siteName);
+    var urlNum = document.createElement('td');
+    urlNum.appendChild(document.createTextNode(data[site]));
+    tr.appendChild(urlNum);
     var sitePercent = document.createElement('td');
-    sitePercent.className = "warn";
     sitePercent.appendChild(document.createTextNode( (  data[site] / urlcounts )   +  " %" ));
     tr.appendChild(sitePercent);
-    table.appendChild(tr);
+    tbody.appendChild(tr);
   }
   popupDiv.appendChild(table);
 }
