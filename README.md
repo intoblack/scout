@@ -29,6 +29,10 @@
 -------------------
 +  地址 chrome-extension://你控件的id/popup.html   
 
+<font color="red">warning</font>
+-------------
++   chrome.history.search(query , callback ) , callback 是一个回调函数 ， 所以你在这个回调函数外面处理数据的话 ， 因为延迟 ，会得不到数据
+
 引用：
 <a href="http://chrome.liuyixi.com/overview.html">chrome插件开发.官方简版</a> 
 <a href="http://blog.csdn.net/xiaoxian8023/article/details/24457767">崔成龙.chrom插件开发</a>

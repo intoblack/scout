@@ -30,7 +30,7 @@ function buildPopupDom(divName, data) {
 }
 
 
-function buildPopupDom1(divName, data) {
+function buildPopupDom1(divName, data , urlcounts ) {
   var popupDiv = document.getElementById(divName);
   var table = document.createElement('table');
   table.className = "table table-hover";
@@ -45,6 +45,10 @@ function buildPopupDom1(divName, data) {
     td1.className = "warn";
     td1.appendChild(document.createTextNode(data[site]));
     tr.appendChild(td1);
+    var sitePercent = document.createElement('td');
+    sitePercent.className = "warn";
+    sitePercent.appendChild(document.createTextNode( (  data[site] / urlcounts )   +  " %" ));
+    tr.appendChild(sitePercent);
     table.appendChild(tr);
   }
   popupDiv.appendChild(table);
@@ -53,8 +57,8 @@ function buildPopupDom1(divName, data) {
 
 function buildTypedUrlList(divName) {
 
-  var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 1;
-  var beforeTime = (new Date).getTime() - microsecondsPerWeek;
+  // var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 1;
+  var beforeTime = (new Date).getTime();
   siteInfo = {}
 
   var getHost = function(url) {
@@ -69,24 +73,26 @@ function buildTypedUrlList(divName) {
     }
     return host;
   }
-
+  var urlCounts = 0 ;
   chrome.history.search({
       'text': '',
-      'startTime': beforeTime,
+      'endTime': beforeTime,
     },
     function(HistoryItem) {
       for (var i = 0; i < HistoryItem.length; ++i) {
         var url = HistoryItem[i].url;
+        var visitCount = HistoryItem[i].visitCount ;
         host = getHost(url);
         if (host != "") {
+          urlCounts  += 1 ;
           if (!siteInfo[host]) {
-            siteInfo[host] = 1;
+            siteInfo[host] = visitCount;
           } else {
-            siteInfo[host] += 1;
+            siteInfo[host] += visitCount;
           }
         }
       }
-      buildPopupDom1(divName, siteInfo);
+      buildPopupDom1(divName, siteInfo , urlCounts );
     }
   );
 }
