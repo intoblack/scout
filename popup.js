@@ -30,13 +30,13 @@ function buildPopupDom(divName, data) {
 }
 
 
-function buildPopupDom1(divName, data , urlcounts ) {
+function buildPopupDom1(divName, data, urlcounts) {
   var popupDiv = document.getElementById(divName);
   var tbody = document.createElement('tbody')
   var table = document.createElement("table");
-  table.className = "table table-hover" ;
-  table.appendChild(tbody) ;
-  for (var site in data ) {
+  table.className = "table table-hover";
+  table.appendChild(tbody);
+  for (var site in data) {
     var tr = document.createElement('tr');
     var siteName = document.createElement('td')
     siteName.appendChild(document.createTextNode(site));
@@ -45,7 +45,7 @@ function buildPopupDom1(divName, data , urlcounts ) {
     urlNum.appendChild(document.createTextNode(data[site]));
     tr.appendChild(urlNum);
     var sitePercent = document.createElement('td');
-    sitePercent.appendChild(document.createTextNode( (  data[site] / urlcounts )   +  " %" ));
+    sitePercent.appendChild(document.createTextNode((data[site] / urlcounts).toFixed(3) + " %"));
     tr.appendChild(sitePercent);
     tbody.appendChild(tr);
   }
@@ -53,9 +53,51 @@ function buildPopupDom1(divName, data , urlcounts ) {
 }
 
 
+function createBar() {
+  options = {
+    segmentShowStroke: true,
+    segmentStrokeColor: "#fff",
+    segmentStrokeWidth: 2,
+    animation: true,
+    animationSteps: 100,
+    animationEasing: "easeOutBounce",
+    animateRotate: true,
+    animateScale: false,
+    onAnimationComplete: null
+  }
+  var data = [{
+    value: 300,
+    color: "#F7464A",
+    highlight: "#FF5A5E",
+    label: "Red"
+  }, {
+    value: 50,
+    color: "#46BFBD",
+    highlight: "#5AD3D1",
+    label: "Green"
+  }, {
+    value: 100,
+    color: "#FDB45C",
+    highlight: "#FFC870",
+    label: "Yellow"
+  }, {
+    value: 40,
+    color: "#949FB1",
+    highlight: "#A8B3C5",
+    label: "Grey"
+  }, {
+    value: 120,
+    color: "#4D5360",
+    highlight: "#616774",
+    label: "Dark Grey"
+  }]
+  var ctx = document.getElementById("canvas").getContext("2d");
+  var myNewChart = new Chart(ctx).Pie(data, options);
+}
+
+
 function buildTypedUrlList(divName) {
 
-  // var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 1;
   var beforeTime = (new Date).getTime();
   siteInfo = {}
 
@@ -71,7 +113,7 @@ function buildTypedUrlList(divName) {
     }
     return host;
   }
-  var urlCounts = 0 ;
+  var urlCounts = 0;
   chrome.history.search({
       'text': '',
       'endTime': beforeTime,
@@ -79,10 +121,10 @@ function buildTypedUrlList(divName) {
     function(HistoryItem) {
       for (var i = 0; i < HistoryItem.length; ++i) {
         var url = HistoryItem[i].url;
-        var visitCount = HistoryItem[i].visitCount ;
+        var visitCount = HistoryItem[i].visitCount;
         host = getHost(url);
         if (host != "") {
-          urlCounts  += 1 ;
+          urlCounts += 1;
           if (!siteInfo[host]) {
             siteInfo[host] = visitCount;
           } else {
@@ -90,7 +132,7 @@ function buildTypedUrlList(divName) {
           }
         }
       }
-      buildPopupDom1(divName, siteInfo , urlCounts );
+      buildPopupDom1(divName, siteInfo, urlCounts);
     }
   );
 }
@@ -99,4 +141,5 @@ function buildTypedUrlList(divName) {
 
 document.addEventListener('DOMContentLoaded', function() {
   buildTypedUrlList("show");
+  createBar();
 });
