@@ -29,13 +29,25 @@
 -------------------
 +  地址 chrome-extension://你控件的id/popup.html 
 +  引用bootstarp 必须引用 jquery
-+  window 是窗体各种设置 ，document html 页面的各个元素控制 ， 类似控制页面的作用 
++  window 是窗体各种设置 ，document html 页面的各个元素控制 ， 类似控制页面的作用  
 
 
 :::html   
      
-     
+        <html><head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script></head><html>
 
+js 注意点
+---------------------
+#####js 类实现
+:::javascript      
+      
+    var hostInfo = function(hostName , vistCount ){
+        this.host = hostName  ;
+        this.count = vistCount ;
+    }
 <font color="red">warning</font>
 -------------
 +   chrome.history.search(query , callback ) , callback 是一个回调函数 ， 所以你在这个回调函数外面处理数据的话 ， 因为延迟 ，会得不到数据

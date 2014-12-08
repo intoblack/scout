@@ -7,45 +7,25 @@ function onAnchorClick(event) {
 }
 
 
-function buildPopupDom(divName, data) {
-  var popupDiv = document.getElementById(divName);
-  var table = document.createElement('table');
-  table.className = "table table-hover";
-  for (var i = 0, ie = data.length; i < ie; ++i) {
-    var tr = document.createElement('tr');
-    tr.className = "info";
-    var td = document.createElement('td')
-    td.className = "active";
 
-    td.appendChild(document.createTextNode(data[i]));
-
-    tr.appendChild(td);
-    var td1 = document.createElement('td');
-    td1.className = "warn";
-    td1.appendChild(document.createTextNode("100%"));
-    tr.appendChild(td1);
-    table.appendChild(tr);
-  }
-  popupDiv.appendChild(table);
-}
-
-
-function buildPopupDom1(divName, data, urlcounts) {
+function buildPopupDom(divName, data, urlcounts) {
   var popupDiv = document.getElementById(divName);
   var tbody = document.createElement('tbody')
   var table = document.createElement("table");
   table.className = "table table-hover";
   table.appendChild(tbody);
-  for (var site in data) {
+  for (var i = 0; i < data.length; i++) {
+    var site = data[i].host;
+    var urlcount = data[i].count;
     var tr = document.createElement('tr');
     var siteName = document.createElement('td')
     siteName.appendChild(document.createTextNode(site));
     tr.appendChild(siteName);
     var urlNum = document.createElement('td');
-    urlNum.appendChild(document.createTextNode(data[site]));
+    urlNum.appendChild(document.createTextNode(urlcount));
     tr.appendChild(urlNum);
     var sitePercent = document.createElement('td');
-    sitePercent.appendChild(document.createTextNode((data[site] / urlcounts).toFixed(3) + " %"));
+    sitePercent.appendChild(document.createTextNode((urlcount / urlcounts).toFixed(3) + " %"));
     tr.appendChild(sitePercent);
     tbody.appendChild(tr);
   }
@@ -63,7 +43,9 @@ function createBar() {
     animationEasing: "easeOutBounce",
     animateRotate: true,
     animateScale: false,
-    onAnimationComplete: null
+    onAnimationComplete: null,
+    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
   }
   var data = [{
     value: 300,
@@ -98,8 +80,7 @@ function createBar() {
 
 function buildTypedUrlList(divName) {
 
-  var beforeTime = (new Date).getTime();
-  siteInfo = {}
+  siteInfo = {} //object {hostname :  url_history_count }
 
   var getHost = function(url) {
     var host = "";
@@ -113,10 +94,26 @@ function buildTypedUrlList(divName) {
     }
     return host;
   }
+
+  var hostInfo = function(hostName, vistCount) {
+    this.host = hostName;
+    this.count = vistCount;
+  }
+
+  var sort = function(objects) {
+    var array = [];
+    for (var i in objects) {
+      array.push(new hostInfo(i, objects[i]));
+    }
+    array.sort(function(obj1, obj2) {
+      return obj1.count > obj2.count ? -1 : 1
+    })
+    return array;
+  }
+
   var urlCounts = 0;
   chrome.history.search({
       'text': '',
-      'endTime': beforeTime,
     },
     function(HistoryItem) {
       for (var i = 0; i < HistoryItem.length; ++i) {
@@ -132,9 +129,12 @@ function buildTypedUrlList(divName) {
           }
         }
       }
-      buildPopupDom1(divName, siteInfo, urlCounts);
+      buildPopupDom(divName, sort(siteInfo), urlCounts);
     }
   );
+
+
+
 }
 
 
