@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>百说 - 设置</title>
+<link href="style/style.css" rel="stylesheet" type="text/css">
+<script src="js/tts.js"></script>
+</head>
+<body onload="load();" onUnload="speaksave();">
+<div class="bar">
+  <h1>百说<font size="-1"> - 设置</font></h1>
+</div>
+<hr>
+<div class="options">
+  <div class="optionstitle">&nbsp;输入你想测试的文字</div>
+  <FORM>
+    <span style="float:right; margin-top:9px;">&nbsp;&nbsp;<span class="buttion" onclick="speakUserText()">Speak</span>&nbsp; <span class="buttion"  onclick="stop()">Stop</span> </span>
+    <div id="srctext" class="edittext" contentEditable="true" style="padding: 4px; margin-top:10px; margin-right:20px; overflow:hidden">选择文字，在右面选择说或者停止</div>
+  </FORM>
+  <div class="optionstitle" style="margin-top:10px">&nbsp;Options - Voice</div>
+  <FORM>
+    <ul class="options-list">
+      <li> <strong>发音:</strong>
+        <select id="voices">
+          <option value="" >未设置</option>
+          <option value="" >普通话</option>
+        </select>
+        </label>
+      </li>
+      <li> <strong>语言:</strong>
+        <select id="lang">
+  <option value="">未设置</option>
+  <option value="zh-CN">中文（简体中文）</option>
+  <option value="zh-TW">中文 (繁體中文)</option>
+</select>
+        </label>
+      </li>
+      <li>
+        <label> <strong>语音模式:</strong>
+          <select id="enqueue">
+            <option value="">队列</option>
+            <option value="true">可中断</option>
+          </select>
+        </label>
+      </li>
+    </ul>
+  </FORM>
+  <FORM>
+    <ul class="options-list">
+      <li> <strong>速率:</strong>
+        <input id="rate" type="range" min="0.5" max="4.0" value="1.0" step="0.1" style="float:right; width:200px;cursor: pointer;">
+        </label>
+      </li>
+      <li> <strong>间隙:</strong>
+        </label>
+        <input id="pitch" type="range" min="0.0" max="2.0" value="1.0" step="0.2" style="float:right; width:200px;cursor: pointer;">
+      </li>
+      <li>
+        <label> <strong> 音量:</strong>
+          <input id="volume" type="range" min="0.0" max="1.0" value="1.0" step="0.1" style="float:right; width:200px;cursor: pointer;">
+        </label>
+      </li>
+    </ul>
+  </FORM>
+  <FORM>
+    <ul class="options-list">
+      <li style=" cursor:pointer" onClick="dfop();localStorage.setItem('options', '');speak('options Restored');"> <strong>默认设置:</strong>
+        <div class="description">恢复默认设置</div>
+      </li>
+      <li  style=" cursor:pointer" onClick="document.getElementById('help').style.display='block'"> <strong>帮助:</strong>
+        <div class="description">打开帮助页面</div>
+      </li>
+    </ul>
+  </FORM>
+</div>
+<div  id="help" style="display:none" >
+<img src="images/help.png" onClick="document.getElementById('help').style.display='none'"; />
+</div>
+<div class="bar" style="position:absolute; 
+ bottom:0px; width:100%; margin-bottom:1px;"
+>  <div id="foot"> @spider </div>
+</div>
+<script>
+loadop();
+</script>
+ <div id="voiceInfo" class="edittext" contentEditable="true" style=" display:none;padding: 4px; margin-top:10px; margin-right:20px; overflow:hidden;">输入文字 </div>
+</body>

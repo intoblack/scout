@@ -60,7 +60,7 @@ js 注意点
 -------------
 +   chrome.history.search(query , callback ) , callback 是一个**回调函数** ， 所以你在这个回调函数外面处理数据的话 ， **因为<font color="red">延迟 </font>，会得不到数据**
 
-引用：
+引用：  
 <a href="http://chrome.liuyixi.com/overview.html">chrome插件开发.官方简版</a>   
 <a href="http://blog.csdn.net/xiaoxian8023/article/details/24457767">崔成龙.chrom插件开发</a>  
 <a href="http://open.chrome.360.cn/html/dev_history.html">360.chromeapi文档</a>  

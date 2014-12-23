@@ -1,0 +1,117 @@
+body {
+    font: message-box;
+    background-color: #EBEFF9;
+    margin: 0;
+    padding: 0;
+    -webkit-box-shadow: inset 0 3px 5px -2px rgba(0,0,0,.1);
+}
+.description {
+    float:right;
+    margin-top:4px;
+    width: 200px;
+    border:none;
+    -webkit-appearance: none;
+    color:#666;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+}
+select {
+    float:right;
+    margin-top:4px;
+    width: 200px;
+    border:none;
+    background-image:url("data:image/gif;base64,R0lGODlhBgADAIABAHx8fP///yH5BAEAAAEALAAAAAAGAAMAAAIGhB8HwcYFADs=");
+    background-repeat:no-repeat;
+    background-position:right;
+    overflow: hidden;
+    -webkit-appearance: none;
+    color:#666;
+    cursor: pointer;
+}
+.edittext {
+    border-width:6px 7px 5px;
+    color:#666;
+    -webkit-border-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAYAAAC9QufkAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAbJJREFUeNqEUk1LAlEUfeOk2UwmKkO4MJMW4iaLSFzMH4hZtPAvDLh0265o1UJoI7QN2vkD/AUKQgjDpDCTSW2UCg2VcvwY53WvOJISdeEyzHnvnHM/HkOWY8Ptdh95PJ49wzA4G3Q4HNTlcrUhdPitQVqIM/YFIIkMw+zLsnwaDod3A4HANsuyhFJKJpOJ2Ww2X3RdrxUKhVK3270DisHMlRPJZPIkk8mcBYNBNzgTcCI2eTqdkuFwSHq9Hmk0Gm/pdPoC8Ft27ipls9nLaDTKhUIhIggC8fl8xOv1LiWKbkLAmVmv1z+RG0mlUleKotBOp0OhRGpZFl0NxMCdtlotWiwWKVQlO4C8FY/HI+gEorNSoXeyGohhK+ju9/sJzGUdye/Q5zPP88TpdP5K/CmAdziOQyMNyV+qqj6Ypjkbzn8B5ePwPiAMJPfL5fJTpVK5GY1GfwogcTwek1KpdA1mrza+BmUfa5p2PxgMKBwshoZfTCDRfr9v5fP5c1hrYumRoIAoioexWEyQJOkA1rVj94+OIKzkcjkVhNvVavVxlbx4opA8iq3gQ0jcrWkD3wIMAJgs5PwAwnxnAAAAAElFTkSuQmCC") 6 7 5 7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+.buttion {
+    height:50px;
+    -webkit-border-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAhCAYAAAALboFLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAW5JREFUeNpi/P//P4NRQIcQAwNDNBCrAzGI/Q6IbwLx0nMbKt4xGvq3SzIxMjYF+7taaqopKXFxcXB++/bj+/Vb9+6t3bj7+L///xuYFfQ80oMDPAK5RJU1H79jZL3/6g/D269MrLwCwmLqiqI8t+/c/83y9+8/na/M0kpfPv5lgIGfv/8zvP7IwMAEFP/95682y5+//9j/MTCxMgDdhg7+MjCy/Pv3n40FxPmHRQEyACv6T4wioJFEKPr/j0om/f1HLZP+EWMSFa37S4xJ9I2W/8TFHX2to5qbqGjdXwKKWFmYf/3+9es3IxMzK7rk/////rAwM/1mkZYQePbh86v7HDziauiKfnx5eU9OSugZU7Sv6d5vb64e+/rh6dU/v3/9+Au0GkSD+CDxSB+TPYzAFMBz4foTx7bpOy2fvvog/v3Hb05ODtbv0mICL6sy3Y8baMrsZ4QmEw4g1gBiASBmB5UZQPwBiG+AbAUIMABnONE14PeafwAAAABJRU5ErkJgggo=") 4 4 5 4;
+    color:#fff;
+    padding:4px;
+    cursor: pointer;
+}
+.buttion2 {
+    height:50px;
+    -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAhCAYAAAALboFLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATZJREFUeNpi/P//P0PDvOdCDAwM0UCsDsQg9jsgvgnESxuSJN8x1s99JsnIyNDkbyNgqSbHrsTFzsT57ee/77ce/by38ciH4yAzWFiZGaMC7ARs1WTY1P8BRX78/MvAzMjAqa3Ars3GKsi6/uCHKBaghI60KJPSz99/GdCBtAiT0t9//7VZ/v5jYGf4z8j6B1MNEDACDWFgY2IgArCACKBTqKWIztYNQjf9+z8a4sPVTUwszIy///z9//s/1ERk/Off/z/MTIx/mIT4mJ8/e/P7Psg0dPzs9e97wvzMz5gsdbj3n7z2+dj95z+u/vrz/wfIeBAN4oPEQfKMwKKH98mr365bjn00e/fpjyhQAScbC+N3IT6W1z5W/KdkxFh3gxSBNHMAsQ60bGIH4p/QMuoKEP8ACDAAHDqyqtVA29kAAAAASUVORK5CYII=) 4 4 5 4;
+    color:#2E4A87;
+    padding:4px;
+    cursor: pointer;
+}
+h1 {
+    margin: 0;
+    font-family:"寰蒋闆呴粦", "瀹嬩綋", Arial;
+}
+h1 img {
+    vertical-align: text-bottom;
+}
+.options-list {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+    border-radius: 12px;
+    background-color:#FFFFFF;
+    font-family: "寰蒋闆呴粦", "瀹嬩綋", Arial;
+    font-size:16px;
+}
+.options-list>li {
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    padding: .5em 1em;
+    line-height: 30px;
+}
+.options-list>li:first-child {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.options-list>li:last-child {
+    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.bar {
+    border-width:0 0 4px;
+    color:#2e4987;
+    font:normal normal 13px/32px Arial;
+    height:32px;
+    margin:0 0 -4px;
+    padding:7px 0 5px;
+    position:relative;
+    text-align:center;
+    text-shadow:#fff 0 1px 1px;
+    z-index:1;
+    -webkit-border-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAwCAYAAADQMxCBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEpJREFUeNpsjjsOACAIQxu8obd3dfYEDlYxMSLC0PCa8kGpnUICglXCLRd5PPBB37kJE6bFEUZ+z68KToLBuw9q5bSkqYgKpgADAPWUQxX46f3mAAAAAElFTkSuQmCC") 0 0 4 0
+}
+.options {
+    margin:0;
+    padding:0 20px;
+}
+.optionstitle {
+    font-family:"寰蒋闆呴粦", "瀹嬩綋", Arial;
+    font-size:14px;
+    color:#7799DD;
+}
+#foot {
+    color:#2E49B3;
+    font:"Arial Black", Gadget, sans-serif;
+    font-size:15px;
+}
+#help {
+    position:absolute;
+    top:310px;
+    right:120px;
+    margin-bottom:1px;
+    z-index:3;
+    cursor:pointer;
+}
