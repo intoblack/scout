@@ -33,53 +33,61 @@ function buildPopupDom(divName, data, urlcounts) {
 }
 
 
-function createBar() {
+function createBar(datas) {
   options = {
-    scaleOverlay: false,
-    scaleOverride: false,
-    scaleSteps: null,
-    scaleStepWidth: null,
-    scaleStartValue: null,
-    scaleLineColor: "rgba(0,0,0,.1)",
-    scaleLineWidth: 1,
-    scaleShowLabels: false,
-    scaleLabel: "<%=value%>",
-    scaleFontFamily: "'Arial'",
-    scaleFontSize: 12,
-    scaleFontStyle: "normal",
-    scaleFontColor: "#666",
-    scaleShowGridLines: true,
-    scaleGridLineColor: "rgba(0,0,0,.05)",
-    scaleGridLineWidth: 1,
-    barShowStroke: true,
-    barStrokeWidth: 2,
-    barValueSpacing: 5,
-    barDatasetSpacing: 1,
-    animation: true,
-    animationSteps: 60,
-    animationEasing: "easeOutQuart",
-    onAnimationComplete: null
-  }
-  var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [{
-      fillColor: "rgba(220,220,220,0.5)",
-      strokeColor: "rgba(220,220,220,1)",
-      data: [65, 59, 90, 81, 56, 55, 40]
-    }, {
-      fillColor: "rgba(151,187,205,0.5)",
-      strokeColor: "rgba(151,187,205,1)",
-      data: [28, 48, 40, 19, 96, 27, 100]
-    }]
-  }
-  var ctx = document.getElementById("canvas").getContext("2d");
-  var bar = new Chart(ctx).Bar(data , {});
+    chart: {
+      renderTo: 'container',
+      type: 'column'
+    },
+    title: {
+      text: '站点访问量'
+    },
+    subtitle: {
+      text: '统计图'
+    },
+    xAxis: {
+      categories: ['访问数量']
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: '次'
+      }
+    },
+    // legend: {
+    //   layout: 'vertical',
+    //   backgroundColor: '#FFFFFF',
+    //   align: 'right',
+    //   verticalAlign: 'down',
+    //   // x: 200,
+    //   // y: 70,
+    //   floating: true,
+    //   shadow: true
+    // },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y} 次</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 1
+      }
+    },
+    series: datas
+  };
+  var chart = new Highcharts.Chart(options);
+
 }
 
 
 function buildTypedUrlList(divName) {
 
-  siteInfo = {} //object {hostname :  url_history_count }
+  siteInfo = {}; //object {hostname :  url_history_count }
 
   var getHost = function(url) {
     var host = "";
@@ -110,6 +118,16 @@ function buildTypedUrlList(divName) {
     return array;
   }
 
+  function siteInfoToBar(siteinfos) {
+    var topSite = [];
+    for (var i = 0; i < siteinfos.length && i < 10; i++) {
+      topSite.push({
+        name: siteinfos[i].host,
+        data: [siteinfos[i].count]
+      });
+    };
+    return topSite;
+  }
   var urlCounts = 0;
   chrome.history.search({
       'text': '',
@@ -118,7 +136,7 @@ function buildTypedUrlList(divName) {
       for (var i = 0; i < HistoryItem.length; ++i) {
         var url = HistoryItem[i].url;
         var visitCount = HistoryItem[i].visitCount;
-        host = getHost(url);
+        var host = getHost(url);
         if (host != "") {
           urlCounts += 1;
           if (!siteInfo[host]) {
@@ -128,7 +146,9 @@ function buildTypedUrlList(divName) {
           }
         }
       }
-      buildPopupDom(divName, sort(siteInfo), urlCounts);
+      var sortHostInfo = sort(siteInfo);
+      buildPopupDom(divName, sortHostInfo, urlCounts);
+      createBar(siteInfoToBar(sortHostInfo));
     }
   );
 
@@ -140,5 +160,5 @@ function buildTypedUrlList(divName) {
 
 document.addEventListener('DOMContentLoaded', function() {
   buildTypedUrlList("show");
-  createBar();
+
 });
