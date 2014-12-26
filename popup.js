@@ -34,6 +34,15 @@ function buildPopupDom(divName, data, urlcounts) {
 
 
 function createBar(datas) {
+  /*
+  function :
+      create colum with host count array 
+  param:
+      datas : [{ name: host1 ,data : [host.count]}....]
+  return:
+      nothing
+   */
+
   options = {
     chart: {
       renderTo: 'container',
@@ -84,6 +93,42 @@ function createBar(datas) {
 
 }
 
+
+
+function createPie(datas) {
+
+  options = {
+    chart: {
+      renderTo: 'piecontainer',
+      plotBackgroundColor: null,
+      plotBorderWidth: 1, //null,
+      plotShadow: false
+    },
+    title: {
+      text: 'Browser market shares at a specific website, 2014'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        }
+      }
+    },
+    series: [{
+      type: 'pie',
+      name: '浏览量百分比'  ,
+      data: datas
+    }]
+  };
+  var chart1 = new Highcharts.Chart(options);
+
+}
 
 function buildTypedUrlList(divName) {
 
@@ -149,16 +194,20 @@ function buildTypedUrlList(divName) {
       var sortHostInfo = sort(siteInfo);
       buildPopupDom(divName, sortHostInfo, urlCounts);
       createBar(siteInfoToBar(sortHostInfo));
+      var datas = [] ;
+      for(var i = 0 ; i < sortHostInfo.length && i < 10 ; i ++)
+      {
+
+        datas.push({ name : sortHostInfo[i].host ,  y : sortHostInfo[i].count });
+        alert(datas[0].name);
+      }
+      createPie(datas);
     }
   );
 
 
 
 }
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
   buildTypedUrlList("show");
-
 });

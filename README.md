@@ -8,12 +8,17 @@
 +   学习js (谷歌，百度)
 +   学习 bootstarp 官方网站 ， 教程
 +   github搜索  
++   highcharts   js功能
 
 
+进展说明
+---------------------------
++  统计所有站点下 ， 访问次数 ；
++  可视化10个top站点 ， 访问次数  
 
 主要想实现的功能  
 -------------------------------
-+  通过图丙的方式 ， 告诉你到底花了多长时间 ， 在浏览器上 ， 可以提醒你更好的分配自己的时间(**下一步准备研究下类似的api**)
++  通过图丙的方式 ， 告诉你到底花了多长时间 ， 在浏览器上 ,可以提醒你更好的分配自己的时间(**下一步准备研究下类似的api**)
 +  时间是有限的 ，到底是那个时间加减法真的是存在 ， 还是我们同时做了很多事情？
 +  时间的挖掘
 
@@ -67,4 +72,6 @@ js 注意点
 <a href="http://chrome.liuyixi.com/history.html#type-HistoryItem">chrome api 文档</a>    
 <a href="http://v3.bootcss.com/css/#code">bootstarp官方用例说明</a>  
 <a href="https://github.com/nnnick/Chart.js">char.js **js 图表插件**</a>   
-<a href="http://www.bootcss.com/p/chart.js/docs/">char.js 中文文档</a>    
+<a href="http://www.bootcss.com/p/chart.js/docs/">char.js 中文文档</a>  
+<a href="http://www.highcharts.com/demo/line-ajax/grid-light">highcharts</a>  
+
