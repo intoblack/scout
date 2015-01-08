@@ -105,7 +105,7 @@ function createPie(datas) {
       plotShadow: false
     },
     title: {
-      text: 'Browser market shares at a specific website, 2014'
+      text: '站点访问量占比'
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -122,7 +122,7 @@ function createPie(datas) {
     },
     series: [{
       type: 'pie',
-      name: '浏览量百分比'  ,
+      name: '浏览量百分比',
       data: datas
     }]
   };
@@ -192,15 +192,22 @@ function buildTypedUrlList(divName) {
         }
       }
       var sortHostInfo = sort(siteInfo);
-      buildPopupDom(divName, sortHostInfo, urlCounts);
+      // buildPopupDom(divName, sortHostInfo, urlCounts);
       createBar(siteInfoToBar(sortHostInfo));
-      var datas = [] ;
-      for(var i = 0 ; i < sortHostInfo.length && i < 10 ; i ++)
-      {
-
-        datas.push({ name : sortHostInfo[i].host ,  y : sortHostInfo[i].count });
-        alert(datas[0].name);
+      var datas = [];
+      var otherCount = 0 ;
+      for (var i = 0; i < sortHostInfo.length ; i++) {
+        if (i < 10) {
+          datas.push({
+            name: sortHostInfo[i].host,
+            y: sortHostInfo[i].count
+          });
+        }else
+        {
+          otherCount += 1 ;
+        }
       }
+      datas.push({name: '其它' , y : otherCount});
       createPie(datas);
     }
   );
